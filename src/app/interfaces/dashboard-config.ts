@@ -114,10 +114,10 @@ export interface GridOptions {
   /**
    * 資料 (與表頭對應)
    *
-   * @type {unknown[]}
+   * @type {any[]}
    * @memberof GridOptions
    */
-  data: unknown[];
+  data: any[];
 }
 
 /**
