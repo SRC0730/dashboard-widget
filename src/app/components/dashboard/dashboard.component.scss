@@ -1,0 +1,44 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.widget-item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.widget-header {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+
+.widget-content {
+  flex: 1;
+  overflow: auto;
+  padding: 0;
+}
+
+// 每個 row 高度為 50px
+:host {
+  --row-height: 50px;
+  display: block;
+}
+
+// 動態設定每個 widget 的 grid-row 高度
+.dashboard-container {
+  grid-auto-rows: var(--row-height);
+}
