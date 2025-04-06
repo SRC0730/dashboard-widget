@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Dashboard</h1>
+  <div class="d-flex">
+    <textarea
+      class="form-control"
+      rows="5"
+      placeholder="請輸入 json 內容"
+      [(ngModel)]="txtConfig"
+    ></textarea>
+    <button class="btn btn-primary" (click)="changeConfig()">套用</button>
+  </div>
+  <app-dashboard [config]="dashboardConfig"></app-dashboard>
+</div>
