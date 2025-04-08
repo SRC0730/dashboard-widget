@@ -1,8 +1,14 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'entry-level', pathMatch: 'full' },
   {
-    path: '',
-    loadComponent: () => import('@features').then((c) => c.IndexComponent),
+    path: 'entry-level',
+    loadComponent: () => import('@features').then((c) => c.EntryLevelComponent),
+  },
+  {
+    path: 'intermediate-level',
+    loadComponent: () =>
+      import('@features').then((c) => c.IntermediateLevelComponent),
   },
 ];
