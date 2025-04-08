@@ -1,4 +1,4 @@
-# Entry Level 說明
+# Entry Level
 
 ## 如何啟動執行整個專案
 
@@ -39,12 +39,6 @@
 3. 提供 textarea 切換 dashboardConfig 內容
 
 ## 簡易的專案架構說明
-
-### 題目
-
-請設計一套儀錶板 dashboard 系統，將畫面上不同的功能以獨立 widget 的方式集中顯示，同樣功能的 widget 隨著設定的不同，可以重複使用；
-
-### 主要目錄結構
 
 - **components**: 共用元件
   - **dashboard**: 儀表板 (dashboard) 元件
