@@ -3,14 +3,14 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DashboardComponent } from '@components';
 import { DashboardConfig } from '@interfaces';
-import { IndexComponent } from './index.component';
+import { EntryLevelComponent } from './entry-level.component';
 
 // 創建 dashboard component 的模擬
 class MockDashboardComponent {}
 
-describe('IndexComponent', () => {
-  let component: IndexComponent;
-  let fixture: ComponentFixture<IndexComponent>;
+describe('EntryLevelComponent', () => {
+  let component: EntryLevelComponent;
+  let fixture: ComponentFixture<EntryLevelComponent>;
 
   const defaultConfig: DashboardConfig = {
     widgets: [
@@ -119,14 +119,14 @@ describe('IndexComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IndexComponent, FormsModule],
+      imports: [EntryLevelComponent, FormsModule],
       // 使用模擬替換真實組件
       providers: [
         { provide: DashboardComponent, useClass: MockDashboardComponent },
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(IndexComponent);
+    fixture = TestBed.createComponent(EntryLevelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,13 +4,13 @@ import { DashboardComponent } from '@components';
 import { DashboardConfig } from '@interfaces';
 
 @Component({
-  selector: 'app-index',
+  selector: 'app-entry-level',
   standalone: true,
   imports: [DashboardComponent, FormsModule],
-  templateUrl: './index.component.html',
-  styleUrl: './index.component.scss',
+  templateUrl: './entry-level.component.html',
+  styleUrl: './entry-level.component.scss',
 })
-export class IndexComponent {
+export class EntryLevelComponent {
   dashboardConfig: DashboardConfig = {
     widgets: [
       {

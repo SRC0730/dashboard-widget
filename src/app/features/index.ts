@@ -1,1 +1,1 @@
-export * from './index/index.component';
+export * from './entry-level/entry-level.component';
