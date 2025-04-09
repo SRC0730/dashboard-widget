@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { DashboardConfig, GridOptions, TextOptions, Widget } from '@interfaces';
+import {
+  DashboardConfig,
+  GridFilterField,
+  GridOptions,
+  TextOptions,
+  Widget,
+} from '@interfaces';
 import { GridWidgetComponent } from '../grid-widget/grid-widget.component';
 import { TextWidgetComponent } from '../text-widget/text-widget.component';
 
@@ -12,6 +18,7 @@ import { TextWidgetComponent } from '../text-widget/text-widget.component';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+  @Input() filterFields: GridFilterField[] = [];
   @Input({ required: true }) config!: DashboardConfig;
 
   getWidgetStyle(widget: Widget): any {
