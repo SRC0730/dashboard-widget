@@ -1,5 +1,6 @@
+import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GridOptions } from '../../interfaces/dashboard-config';
+import { GridFilterField, GridOptions } from '@interfaces';
 import { GridWidgetComponent } from './grid-widget.component';
 
 describe('GridWidgetComponent', () => {
@@ -74,5 +75,60 @@ describe('GridWidgetComponent', () => {
     expect(firstDataItem.name).toBeDefined();
     expect(firstDataItem.age).toBeDefined();
     expect(firstDataItem.email).toBeDefined();
+  });
+
+  it('should have filterFields property with default empty array', () => {
+    expect(component.filterFields).toBeDefined();
+    expect(component.filterFields).toEqual([]);
+  });
+
+  it('should filter data when filterFields is set', () => {
+    const mockFilterFields: GridFilterField[] = [
+      { fieldId: 'name', value: '張' },
+    ];
+
+    component.filterFields = mockFilterFields;
+    component.ngOnChanges({
+      filterFields: new SimpleChange(null, mockFilterFields, true),
+    });
+
+    expect(component.data.length).toBe(1);
+    expect(component.data[0].name).toBe('張三');
+  });
+
+  it('should handle multiple filter fields', () => {
+    const mockFilterFields: GridFilterField[] = [
+      { fieldId: 'age', value: 25 },
+      { fieldId: 'name', value: '李' },
+    ];
+
+    component.filterFields = mockFilterFields;
+    component.ngOnChanges({
+      filterFields: new SimpleChange(null, mockFilterFields, true),
+    });
+
+    expect(component.data.length).toBe(1);
+    expect(component.data[0].name).toBe('李四');
+    expect(component.data[0].age).toBe(25);
+  });
+
+  it('should update data when options change', () => {
+    const spy = spyOn<any>(component, 'updateData').and.callThrough();
+
+    const newMockOptions: GridOptions = {
+      headers: mockGridOptions.headers,
+      data: [
+        { name: '張三', age: 30, email: 'zhang@example.com' },
+        { name: '李四', age: 25, email: 'li@example.com' },
+        { name: '王五', age: 35, email: 'wang@example.com' },
+      ],
+    };
+
+    component.ngOnChanges({
+      options: new SimpleChange(mockGridOptions, newMockOptions, false),
+    });
+
+    expect(spy).toHaveBeenCalled();
+    expect(component.data.length).toBe(2);
   });
 });

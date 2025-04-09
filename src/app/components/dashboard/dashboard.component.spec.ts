@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DashboardConfig, GridOptions, TextOptions, Widget } from '@interfaces';
+import {
+  DashboardConfig,
+  GridFilterField,
+  GridOptions,
+  TextOptions,
+  Widget,
+} from '@interfaces';
 import { GridWidgetComponent } from '../grid-widget/grid-widget.component';
 import { TextWidgetComponent } from '../text-widget/text-widget.component';
 import { DashboardComponent } from './dashboard.component';
@@ -37,6 +43,11 @@ describe('DashboardComponent', () => {
     widgets: [mockGridWidget, mockTextWidget],
   };
 
+  const mockFilterFields: GridFilterField[] = [
+    { fieldId: 'name', value: '' },
+    { fieldId: 'date', value: new Date() },
+  ];
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DashboardComponent, GridWidgetComponent, TextWidgetComponent],
@@ -46,6 +57,7 @@ describe('DashboardComponent', () => {
     component = fixture.componentInstance;
     // 提供模擬配置
     component.config = mockConfig;
+    component.filterFields = mockFilterFields;
     fixture.detectChanges();
   });
 
@@ -62,6 +74,20 @@ describe('DashboardComponent', () => {
       By.css('.widget-item')
     );
     expect(widgetElements.length).toBe(mockConfig.widgets.length);
+  });
+
+  it('should have filterFields set correctly', () => {
+    expect(component.filterFields).toEqual(mockFilterFields);
+    expect(component.filterFields.length).toBe(2);
+  });
+
+  it('should pass filterFields to grid widget components', () => {
+    const gridWidgetDebug = fixture.debugElement.query(
+      By.directive(GridWidgetComponent)
+    );
+    const gridWidgetComponent = gridWidgetDebug.componentInstance;
+
+    expect(gridWidgetComponent.filterFields).toEqual(mockFilterFields);
   });
 
   it('should calculate the correct widget styles based on position', () => {
@@ -99,6 +125,11 @@ describe('DashboardComponent', () => {
       By.directive(GridWidgetComponent)
     );
     expect(gridWidgetDebug).toBeTruthy();
+
+    const gridWidgetComponent = gridWidgetDebug.componentInstance;
+    expect(gridWidgetComponent.options).toEqual(
+      mockGridWidget.options as GridOptions
+    );
   });
 
   it('should render text widget for type text', () => {
@@ -106,6 +137,11 @@ describe('DashboardComponent', () => {
       By.directive(TextWidgetComponent)
     );
     expect(textWidgetDebug).toBeTruthy();
+
+    const textWidgetComponent = textWidgetDebug.componentInstance;
+    expect(textWidgetComponent.options).toEqual(
+      mockTextWidget.options as TextOptions
+    );
   });
 
   it('should display widget titles correctly', () => {
@@ -130,5 +166,17 @@ describe('DashboardComponent', () => {
       By.css('.widget-item')
     );
     expect(widgetElements.length).toBe(0);
+  });
+
+  it('should handle empty filterFields array', () => {
+    component.filterFields = [];
+    fixture.detectChanges();
+
+    const gridWidgetDebug = fixture.debugElement.query(
+      By.directive(GridWidgetComponent)
+    );
+    const gridWidgetComponent = gridWidgetDebug.componentInstance;
+
+    expect(gridWidgetComponent.filterFields).toEqual([]);
   });
 });
