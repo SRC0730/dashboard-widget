@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from '@components';
@@ -8,7 +7,7 @@ import { DialogModule } from 'primeng/dialog';
 @Component({
   selector: 'app-intermediate-level',
   standalone: true,
-  imports: [DashboardComponent, FormsModule, DialogModule, JsonPipe],
+  imports: [DashboardComponent, FormsModule, DialogModule],
   templateUrl: './intermediate-level.component.html',
   styleUrl: './intermediate-level.component.scss',
 })
