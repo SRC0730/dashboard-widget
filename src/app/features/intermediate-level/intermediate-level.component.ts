@@ -98,6 +98,15 @@ export class IntermediateLevelComponent {
 
   onFilterNameChange() {
     this.showDialog = false;
+
+    // 如果 filterName 為空，清空 filterFields
+    if (this.filterName === '') {
+      this.filterFields = this.filterFields.filter(
+        (filter) => filter.fieldId !== 'name'
+      );
+      return;
+    }
+
     // 判斷filterFields 是否有 fieldId: 'name'
     const index = this.filterFields.findIndex(
       (filter) => filter.fieldId === 'name'
