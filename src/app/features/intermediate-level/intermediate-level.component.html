@@ -1,0 +1,41 @@
+<div class="d-flex mb-2">
+  <textarea
+    class="form-control"
+    rows="5"
+    placeholder="請輸入 json 內容"
+    [(ngModel)]="txtConfig"
+  ></textarea>
+  <button class="btn btn-primary" (click)="onConfigChange()">套用</button>
+</div>
+<div class="text-right d-flex justify-content-end">
+  <button class="btn btn-warning" (click)="showDialog = true">
+    Filter By Name
+  </button>
+</div>
+<app-dashboard
+  [filterFields]="filterFields"
+  [config]="dashboardConfig"
+></app-dashboard>
+
+<p-dialog
+  header="Input Name"
+  [modal]="true"
+  [(visible)]="showDialog"
+  [draggable]="false"
+>
+  <div class="d-flex justify-end gap-2">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="filterName"
+      placeholder="請輸入名稱"
+    />
+    <button
+      type="button"
+      class="btn btn-warning"
+      (click)="onFilterNameChange()"
+    >
+      Filter
+    </button>
+  </div>
+</p-dialog>
