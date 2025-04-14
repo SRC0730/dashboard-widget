@@ -10,6 +10,10 @@
         [filterFields]="filterFields"
         [options]="translateGridOptions(widget.options)"
       ></app-grid-widget>
+      }@case ('super-grid') {
+      <super-grid
+        [options]="translateSuperGridOptions(widget.options)"
+      ></super-grid>
       } @case ('text') {
       <app-text-widget
         [options]="translateTextOptions(widget.options)"

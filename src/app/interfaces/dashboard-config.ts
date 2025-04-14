@@ -34,10 +34,10 @@ export interface Widget {
   /**
    * 類型
    *
-   * @type {('grid' | 'text')}
+   * @type {('grid' | 'super-grid' | 'text')}
    * @memberof Widget
    */
-  type: 'grid' | 'text';
+  type: 'grid' | 'super-grid' | 'text';
 
   /**
    * 位置
@@ -50,10 +50,10 @@ export interface Widget {
   /**
    * 設定內容
    *
-   * @type {(GridOptions | TextOptions)}
+   * @type {(GridOptions| SuperGridOptions | TextOptions)}
    * @memberof Widget
    */
-  options: GridOptions | TextOptions;
+  options: GridOptions | SuperGridOptions | TextOptions;
 }
 
 /**
@@ -118,6 +118,38 @@ export interface GridOptions {
    * @memberof GridOptions
    */
   data: any[];
+}
+
+/**
+ * Super Grid 屬性
+ *
+ * @export
+ * @interface SuperGridOptions
+ */
+export interface SuperGridOptions {
+  /**
+   * 表頭
+   *
+   * @type {GridHeader[]}
+   * @memberof GridOptions
+   */
+  headers: GridHeader[];
+
+  /**
+   * 資料 (與表頭對應)
+   *
+   * @type {any[]}
+   * @memberof GridOptions
+   */
+  data: any[];
+
+  /**
+   * 排序欄位
+   *
+   * @type {string[]}
+   * @memberof GridOptions
+   */
+  sortColumns?: string[];
 }
 
 /**
