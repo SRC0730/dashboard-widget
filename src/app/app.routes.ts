@@ -11,4 +11,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('@features').then((c) => c.IntermediateLevelComponent),
   },
+  {
+    path: 'advanced-level',
+    loadComponent: () =>
+      import('@features').then((c) => c.AdvancedLevelComponent),
+  },
 ];
