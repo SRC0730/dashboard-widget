@@ -12,6 +12,7 @@
       ></app-grid-widget>
       }@case ('super-grid') {
       <super-grid
+        [filterFields]="filterFields"
         [options]="translateSuperGridOptions(widget.options)"
       ></super-grid>
       } @case ('text') {
