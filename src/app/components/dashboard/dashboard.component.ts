@@ -37,13 +37,13 @@ export class DashboardComponent implements OnInit {
     // 載入 JavaScript 檔案
     const scriptElement = document.createElement('script');
     scriptElement.src = 'assets/super-grid/main.js';
-    scriptElement.type = 'text/javascript';
+    scriptElement.type = 'module';
     document.body.appendChild(scriptElement);
 
     // 載入 polyfills 檔案
     const polyfillsElement = document.createElement('script');
     polyfillsElement.src = 'assets/super-grid/polyfills.js';
-    polyfillsElement.type = 'text/javascript';
+    polyfillsElement.type = 'module';
     document.body.appendChild(polyfillsElement);
 
     // 載入 CSS 檔案
